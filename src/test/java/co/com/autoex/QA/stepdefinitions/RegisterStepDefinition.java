@@ -15,16 +15,19 @@ import org.openqa.selenium.WebDriver;
 
 public class RegisterStepDefinition {
 
-    private Actor user;
+    protected static Actor user;
 
     @Managed(driver = "chrome")
     public WebDriver theDriver;
 
     @Before
     public void setUp() {
-        user = Actor.named("Levi");
-        user.can(BrowseTheWeb.with(theDriver));
+        if (user == null) {
+            user = Actor.named("Levi");
+            user.can(BrowseTheWeb.with(theDriver));
+        }
     }
+
 
     @Given("I am on the AutomationExercises homepage")
     public void iAmOnTheAutomationExercisesHomepage() {
