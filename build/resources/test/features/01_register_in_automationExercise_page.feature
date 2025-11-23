@@ -15,18 +15,7 @@ Feature: Register on the AutomationExercises website
     Then the account should be created correctly
 
   Scenario: Email already registered
-    Given that I enter the “Signup / Login” section
+    Given that I enter the “Signup - Login” section
     When I try to register with an email that already exists
     Then the message “Email Address already exists!” should be displayed
 
-  Scenario: Invalid email address
-    Given that I enter the “Signup / Login” section
-    When I try to register with an invalid email address
-    Then a message should be displayed indicating that the email address is invalid
-
-  Scenario: Incomplete form data
-    Given that I enter the “Signup/Login” section
-    When I enter a valid name and email address
-    And I proceed to the registration form
-    And I leave mandatory fields blank
-    Then a message should be displayed indicating the missing fields

@@ -17,17 +17,24 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
+
 public class RegisterStepDefinition {
+
+    public final String NAME_GLOBAL = "levi";
+    public final String EMAIL_GLOBAL = "levi18@test.com";
+
+
     @Given("I am enter the Signup-Login section")
     public void iImEnterTheSignup(){
-        WaitTime.putWaitTimeOf(2000);
+        WaitTime.putWaitTimeOf(1000);
         user.attemptsTo(ClickOn.button(SING_UP_LOGIN_BUTTON));
     }
     @When("I enter a valid name and a valid email address")
     public void iEnterAValidNameAndAValidEmailAddress() {
         WaitTime.putWaitTimeOf(1000);
         user.attemptsTo(
-                EnterNameAndEmail.with("Levi", "levi@test.com", SING_UP_NAME_TEXT_BOX, SING_UP_EMAIL_TEXT_BOX)
+                EnterNameAndEmail.with(NAME_GLOBAL, EMAIL_GLOBAL, SING_UP_NAME_TEXT_BOX, SING_UP_EMAIL_TEXT_BOX)
         );
 
     }
@@ -40,8 +47,8 @@ public class RegisterStepDefinition {
     public void iCompleteTheRequiredInformationOnTheForm() {
         UserData data;
         data = new UserData(
-                "Levi",
-                "levi@test.com",
+                NAME_GLOBAL,
+                EMAIL_GLOBAL,
                 "123456",
                 "Levi",
                 "Torres",
