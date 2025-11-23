@@ -1,0 +1,2 @@
+# Ignorar carpeta target (Gradle o Maven)
+target/
