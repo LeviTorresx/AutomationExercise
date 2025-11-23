@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/resources/features/01_register_in_automationExercise_page.feature",
         glue = "co.com.autoex.QA.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

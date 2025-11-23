@@ -1,79 +1,79 @@
 package co.com.autoex.QA.stepdefinitions;
 
-import co.com.autoex.QA.tasks.ClickButton;
+import co.com.autoex.QA.models.UserData;
+import co.com.autoex.QA.questions.AccountCreated;
+import co.com.autoex.QA.tasks.ClickOn;
 import co.com.autoex.QA.tasks.EnterNameAndEmail;
-import co.com.autoex.QA.tasks.FillRegisterForm;
-import co.com.autoex.QA.tasks.GoToHomePage;
-import io.cucumber.java.Before;
+import co.com.autoex.QA.tasks.FillTheRegisterForm;
+import co.com.autoex.QA.utils.WaitTime;
+import static co.com.autoex.QA.userinterfaces.HomePageUI.*;
+import static co.com.autoex.QA.userinterfaces.RegisterFormUI.SING_UP_CREATE_ACCOUNT_BUTTON;
+import static co.com.autoex.QA.userinterfaces.RegisterFormUI.SING_UP_CONTINUE;
+import static co.com.autoex.QA.userinterfaces.SignupPageUI.*;
+import static co.com.autoex.QA.stepdefinitions.Hooks.user;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.annotations.Managed;
-import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import org.openqa.selenium.WebDriver;
 
 public class RegisterStepDefinition {
-
-    protected static Actor user;
-
-    @Managed(driver = "chrome")
-    public WebDriver theDriver;
-
-    @Before
-    public void setUp() {
-        if (user == null) {
-            user = Actor.named("Levi");
-            user.can(BrowseTheWeb.with(theDriver));
-        }
+    @Given("I am enter the Signup-Login section")
+    public void iImEnterTheSignup(){
+        WaitTime.putWaitTimeOf(2000);
+        user.attemptsTo(ClickOn.button(SING_UP_LOGIN_BUTTON));
     }
-
-
-    @Given("I am on the AutomationExercises homepage")
-    public void iAmOnTheAutomationExercisesHomepage() {
+    @When("I enter a valid name and a valid email address")
+    public void iEnterAValidNameAndAValidEmailAddress() {
+        WaitTime.putWaitTimeOf(1000);
         user.attemptsTo(
-                GoToHomePage.open()
+                EnterNameAndEmail.with("Levi", "levi@test.com", SING_UP_NAME_TEXT_BOX, SING_UP_EMAIL_TEXT_BOX)
         );
-    }
 
-    @When("I click on the {string} button")
-    public void iClickOnTheButton(String button) {
-        user.attemptsTo(
-                ClickButton.withName(button)
+    }
+    @When("I continue to the registration form")
+    public void iContinueToTheRegistrationForm() {
+        WaitTime.putWaitTimeOf(1000);
+        user.attemptsTo(ClickOn.button(SING_UP_BUTTON));
+    }
+    @When("I complete the required information on the form")
+    public void iCompleteTheRequiredInformationOnTheForm() {
+        UserData data;
+        data = new UserData(
+                "Levi",
+                "levi@test.com",
+                "123456",
+                "Levi",
+                "Torres",
+                "10",
+                "May",
+                "2000",
+                "UdeA",
+                "Street 123",
+                "Apt 22",
+                "Canada",
+                "Toronto",
+                "Ontario",
+                "50001",
+                "3001234567"
         );
-    }
 
-    @When("I enter a valid name and email in the Signup section")
-    public void iEnterAValidNameAndEmailInTheSignupSection() {
         user.attemptsTo(
-                EnterNameAndEmail.withRandomEmail()
+                FillTheRegisterForm.with(data)
         );
-    }
 
-    @When("I touch the {string} button")
-    public void iClickTheButton(String button) {
-        user.attemptsTo(
-                ClickButton.withName(button)
+        WaitTime.putWaitTimeOf(2000);
+        user.attemptsTo(ClickOn.button(SING_UP_CREATE_ACCOUNT_BUTTON));
+    }
+    @Then("the account should be created correctly")
+    public void theAccountShouldBeCreatedCorrectly() {
+        user.should(
+                seeThat("Account creation message",
+                        AccountCreated.isShown()
+                )
         );
-    }
-
-    @When("I fill in all required fields in the registration form")
-    public void iFillInAllRequiredFieldsInTheRegistrationForm() {
         user.attemptsTo(
-                FillRegisterForm.completely()
-        );
-    }
-
-    @Then("I should see the message {string}")
-    public void iShouldSeeTheMessage(String expectedMessage) {
-        System.out.println("Checking message: " + expectedMessage);
-
-    }
-
-    @Then("I click the {string} button")
-    public void iClickTheButtonContinue(String button) {
-        user.attemptsTo(
-                ClickButton.withName(button)
+                ClickOn.button(SING_UP_CONTINUE)
         );
     }
 }
