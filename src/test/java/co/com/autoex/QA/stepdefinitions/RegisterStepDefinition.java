@@ -22,7 +22,7 @@ import io.cucumber.java.en.When;
 public class RegisterStepDefinition {
 
     public final String NAME_GLOBAL = "levi";
-    public final String EMAIL_GLOBAL = "levi198@test.com";
+    public final String EMAIL_GLOBAL = "levi1985@test.com";
 
 
     @Given("I am enter the Signup-Login section")
