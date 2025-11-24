@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.autoex.QA.runners.RunnerSelectProduct" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-24T00:37:33.151Z" hostname="JUNI110" time="16.059">
+<testsuite name="co.com.autoex.QA.runners.RunnerSelectProduct" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-24T01:08:29.401Z" hostname="JUNI110" time="17.324">
   <properties/>
-  <testcase name="Adding a product with specific options to the cart" classname="co.com.autoex.QA.runners.RunnerSelectProduct" time="16.059"/>
+  <testcase name="Adding a product with specific options to the cart" classname="co.com.autoex.QA.runners.RunnerSelectProduct" time="17.324"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[[Test worker] INFO  - 
 
